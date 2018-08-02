@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-swish" version="1.0.0">
+  <name>Cordova Swish</name>
+  <description>Swish wrapper for Cordova</description>
+  <license>Apache 2.0</license>
+  <keywords>cordova, plugin, template</keywords>
+
+  <preference name="URL_SUFFIX" />
+  
+  <js-module src="www/swish.js" name="swish">
+    <clobbers target="Swish" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="CPSwish" >
+        <param name="android-package" value="cordova.plugin.CPSwish"/>
+      </feature>
+    </config-file>
+
+	<config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="swish$URL_SUFFIX"/>
+      </intent-filter>
+      <!-- <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="$ANDROID_SCHEME"
+              android:host="$ANDROID_HOST"
+              android:pathPrefix="$ANDROID_PATHPREFIX" />
+      </intent-filter> -->
+    </config-file>
+
+	
+    <source-file src="src/android/CPSWish.java" target-dir="src/cordova/plugin" />
+  </platform>
+
+  <!-- ios -->
+  <platform name="ios">
+  
+	<config-file target="*-Info.plist" parent="CFBundleURLTypes">
+	  <array>
+		<dict>
+		  <key>CFBundleURLSchemes</key>
+		  <array>
+			<string>swish$URL_SUFFIX</string>
+		  </array>
+		</dict>
+	  </array>
+	</config-file>  
+
+    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+	  <array>
+		<string>swish</string>
+	  </array>
+    </config-file>  
+	
+    <config-file target="*-Info.plist" parent="SWISH_URL_SUFFIX">
+      <string>$URL_SUFFIX</string>
+    </config-file>  
+  
+    <config-file target="config.xml" parent="/*">
+      <feature name="Swish">
+        <param name="ios-package" value="CPSwish" />
+      </feature>
+    </config-file>
+    <header-file src="src/ios/CPSwish.h" />
+    <source-file src="src/ios/CPSwish.m" />
+  </platform>
+
+</plugin>
