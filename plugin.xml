@@ -38,7 +38,7 @@
     </config-file>
 
 	
-    <source-file src="src/android/CPSWish.java" target-dir="src/cordova/plugin" />
+    <source-file src="src/android/CPSwish.java" target-dir="src/cordova/plugin" />
   </platform>
 
   <!-- ios -->
