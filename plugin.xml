@@ -15,8 +15,8 @@
   <!-- android -->
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="CPSwish" >
-        <param name="android-package" value="cordova.plugin.CPSwish"/>
+      <feature name="Swish" >
+        <param name="android-package" value="cordova.plugin.Swish"/>
       </feature>
     </config-file>
 
@@ -38,7 +38,11 @@
     </config-file>
 
 	
-    <source-file src="src/android/CPSwish.java" target-dir="src/cordova/plugin" />
+    <source-file src="src/android/Swish.java" target-dir="src/cordova/plugin" />
+	<resource-file src="src/android/swish.xml" target="res/values/swish.xml" />
+	<config-file target="app/src/main/res/values/swish.xml" parent="/*">
+		<string name="SWISH_URL_SUFFIX">$URL_SUFFIX</string>
+	</config-file>
   </platform>
 
   <!-- ios -->
